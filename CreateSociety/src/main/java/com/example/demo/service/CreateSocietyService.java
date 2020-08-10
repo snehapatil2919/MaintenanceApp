@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.CreateSociety;
@@ -15,10 +17,10 @@ public class CreateSocietyService {
 		CreateSociety save = createSocietyRepository.save(createSociety);
 		return save;
 	}
-
-	public CreateSociety getCreateSocietyData(Long id) {
-		CreateSociety get = createSocietyRepository.getOne(id);
-		return get;
+	
+	public List<CreateSociety> getAllCreateSocietyData(){
+		List<CreateSociety> getAllData = createSocietyRepository.findAll();
+		return getAllData;
 	}
 
 	public CreateSociety updateCreateSocietyData(CreateSociety createSociety) {
