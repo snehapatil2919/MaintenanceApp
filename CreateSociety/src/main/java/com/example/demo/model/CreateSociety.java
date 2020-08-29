@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -40,7 +39,9 @@ public class CreateSociety {
 	@NotBlank(message = "Please enter your state!...")
 	private String state;
 
-	private String role = "admin";
+	private String role;
+	
+	private String code;
 
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date dateOfCreation = new Date();
@@ -48,7 +49,7 @@ public class CreateSociety {
 	public CreateSociety() {
 		
 	}
-
+	
 	public CreateSociety(Long id, Long userId,
 			@NotBlank(message = "Society name should not be empty!...") String societyName,
 			@NotNull(message = "please enter total number of wings in your society!...") int totalNoOfWings,
@@ -56,7 +57,8 @@ public class CreateSociety {
 			@NotNull(message = "please enter total number of rooms per floor in your society!...") int totalNoOfRoomsPerFloor,
 			@NotBlank(message = "Please enter your address!...") String address,
 			@NotBlank(message = "Please enter your city!...") String city,
-			@NotBlank(message = "Please enter your state!...") String state, String role, Date dateOfCreation) {
+			@NotBlank(message = "Please enter your state!...") String state, String role, String code,
+			Date dateOfCreation) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -68,6 +70,7 @@ public class CreateSociety {
 		this.city = city;
 		this.state = state;
 		this.role = role;
+		this.code = code;
 		this.dateOfCreation = dateOfCreation;
 	}
 
@@ -150,6 +153,15 @@ public class CreateSociety {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public Date getDateOfCreation() {
 		return dateOfCreation;
@@ -159,12 +171,13 @@ public class CreateSociety {
 		this.dateOfCreation = dateOfCreation;
 	}
 
+
 	@Override
 	public String toString() {
 		return "CreateSociety [id=" + id + ", userId=" + userId + ", societyName=" + societyName + ", totalNoOfWings="
 				+ totalNoOfWings + ", totalNoOfFloors=" + totalNoOfFloors + ", totalNoOfRoomsPerFloor="
 				+ totalNoOfRoomsPerFloor + ", address=" + address + ", city=" + city + ", state=" + state + ", role="
-				+ role + ", dateOfCreation=" + dateOfCreation + "]";
+				+ role + ", code=" + code + ", dateOfCreation=" + dateOfCreation + "]";
 	}
 	
 }
